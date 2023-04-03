@@ -1,3 +1,4 @@
+using System.Linq;
 using app.Models;
 
 namespace app
@@ -7,7 +8,7 @@ namespace app
         private List<IItem> _cache;
         public void Remove(string name)
         {
-            IItem item = GetItem(name);
+            IItem item = GetItem<IItem>(name);
             if(item is IStackable)
             {
                 IStackable stacked = (IStackable)item;
@@ -17,12 +18,12 @@ namespace app
                 }
                 else
                 {
-                    _cache.Remove(GetItem(name)); 
+                    _cache.Remove(GetItem<IItem>(name)); 
                 }
             }
             else
             {
-                _cache.Remove(GetItem(name)); 
+                _cache.Remove(GetItem<IItem>(name)); 
             }
         }
         public void Add(IItem item)
@@ -34,16 +35,14 @@ namespace app
             }
         }
         public void List(){ Console.WriteLine(_cache.Count + " items in your inventory"); foreach(IItem item in _cache){Console.WriteLine(item.ToString());} }
-        public IItem GetItem(string name)
-        { 
-            var query = from item in _cache
-                        where item.Name == name
-                        select item;
-            return query.First();
-        }
-        public IItem GetItemById(int id)
+        public T GetItem<T>(string name) where T : IItem
         {
-            return _cache.Find(item => item.Id == id)!;
+            IItem itemm = _cache.Find((item) => item.Name == name)!;
+            if (itemm != null)
+            {
+                return (T)_cache[_cache.IndexOf(itemm)];
+            }
+            throw new Exception("Item not in inventory");
         }
         public void UpdateStack(IItem item)
         {
@@ -69,7 +68,6 @@ namespace app
         {
             return _cache.Contains(item);
         }
-
         public int Count()
         {
             return _cache.Count;

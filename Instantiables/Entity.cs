@@ -8,7 +8,7 @@ namespace app.Insatantiables
         {
             if (inventory.Contains(item))
             {
-                item.Use(this);
+                // Use this item
                 inventory.Remove(item.Name);
             }
             else

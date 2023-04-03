@@ -4,7 +4,5 @@ namespace app.Models
     {
         float Damage { get;set; }
         float Durability { get;set; }
-        
-        void Use(IEntity target);
     }
 }

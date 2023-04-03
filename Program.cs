@@ -10,7 +10,7 @@ namespace app
         public static void Main(string[] args)
         {
             Entity Player = new Entity("Ocean",100.0f,100.0f);
-            Consumable apple = (Consumable)Collectibles.GetItem("Apple");
+            Consumable apple = (Consumable)Collectibles.GetItem<Consumable>("Apple");
             
             
             var app3 = new Consumable(ItemTypes.Consumable, "Apple", 10.0f, 10.0f, 10, delegate (IEntity target)
@@ -22,15 +22,6 @@ namespace app
 
             Player.Consume(apple);
             Player.Consume(app3);
-
-            //apple.Use(Player);
-            //Item a2 = apple.Clone();
-            //Player.inventory.Add(a2);
-            //Player.inventory.List();
-            //Consumable apple2 = (Consumable)Player.inventory.GetItem(a2.Name);
-            //Player.Consume(apple2);
-            //Player.inventory.List();
-            //Console.WriteLine();
         }
     }
 }
