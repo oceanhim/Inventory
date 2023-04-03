@@ -23,5 +23,16 @@ namespace app.DB
                         select item.Value;
             return query.First();
         }
+        public static T GetItem<T>(string name) where T : IItem
+        {
+            if (_items.ContainsKey(name))
+            {
+                return (T)_items[name];
+            }
+            throw new Exception("Item not in inventory");
+                
+            
+
+        }
     }
 }

@@ -65,6 +65,11 @@ namespace app
                 _cache.Add(item); Console.WriteLine(item.Name + " Added to your inventory"); 
             }
         }
+        public bool Contains(IItem item)
+        {
+            return _cache.Contains(item);
+        }
+
         public int Count()
         {
             return _cache.Count;

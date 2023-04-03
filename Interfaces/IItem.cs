@@ -1,5 +1,6 @@
 namespace app.Models
 {
+
     public enum ItemTypes
     {   
         Unset=0,Armor=1,Weapon=2,Consumable=4

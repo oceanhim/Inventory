@@ -24,5 +24,9 @@ namespace app.Insatantiables
         public Consumable(params object[] args):base(ItemTypes.Unset,"",0,0){
 
         }
+        public void Consume()
+        {
+
+        }
     }
 }

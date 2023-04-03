@@ -6,11 +6,13 @@ namespace app.Insatantiables
     {
         public void Consume(Consumable item)
         {
-            if(inventory.GetItem(item.Name) != null)
+            if (inventory.Contains(item))
             {
                 item.Use(this);
                 inventory.Remove(item.Name);
             }
+            else
+                throw new Exception("Item not in inv");
         }
         public string Name { get;set; }
         private float _health { get;set; }
