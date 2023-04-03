@@ -4,6 +4,14 @@ namespace app.Insatantiables
 {
     public class Entity : IEntity
     {
+        public void Consume(Consumable item)
+        {
+            if(inventory.GetItem(item.Name) != null)
+            {
+                item.Use(this);
+                inventory.Remove(item.Name);
+            }
+        }
         public string Name { get;set; }
         private float _health { get;set; }
         public float Health { get { return _health; }

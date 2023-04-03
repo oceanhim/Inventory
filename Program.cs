@@ -11,8 +11,13 @@ namespace app
         {
             Entity Player = new Entity("Ocean",100.0f,100.0f);
             Consumable apple = (Consumable)Collectibles.GetItem("Apple");
-            Entity p2 = Player.Clone();
-            Item a2 = apple.Clone(); // Not Working
+            apple.Use(Player);
+            Item a2 = apple.Clone();
+            Player.inventory.Add(a2);
+            Player.inventory.List();
+            Consumable apple2 = (Consumable)Player.inventory.GetItem(a2.Name);
+            Player.Consume(apple2);
+            Player.inventory.List();
             Console.WriteLine();
         }
     }

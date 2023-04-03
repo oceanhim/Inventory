@@ -6,5 +6,6 @@ namespace app.Models
     {
         int maxSize { get;set; }
         int amount { get;set; }
+        void Use(IEntity target);
     }
 }

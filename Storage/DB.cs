@@ -7,7 +7,12 @@ namespace app.DB
     {
         private static Dictionary<string, IItem> _items = new Dictionary<string, IItem>()
         {
-            {"Apple",new Consumable(ItemTypes.Consumable,"Apple",10.0f,10.0f,10)},
+            {"Apple",new Consumable(ItemTypes.Consumable,"Apple",10.0f,10.0f,10,delegate(IEntity target)
+                {
+                    target.Health += 10;
+                    Console.WriteLine(target.Name + " gained 10 health by eating an Apple!");
+                }
+            )},
             {"Wooden Sword", new Weapon(ItemTypes.Weapon,"Wooden Sword",5.0f,10.0f,50.0f,5.0f,delegate(IEntity target){})}
         };
 
@@ -18,17 +23,5 @@ namespace app.DB
                         select item.Value;
             return query.First();
         }
-
-        // public static Consumable CreateNewConsumable(string name)
-        // {
-        //     Consumable item = (Consumable)GetItem(name);
-        //     return new Consumable(item.Type,item.Name,item.Weight,item.Value,item.amount);
-        // }
-
-        // public static Weapon CreateNewWeapon(string name)
-        // {
-        //     Weapon item = (Weapon)GetItem(name);
-        //     return new Weapon(item.Type,item.Name,item.Weight,item.Value,item.Durability,item.Damage,item.Use);
-        // }
     }
 }
