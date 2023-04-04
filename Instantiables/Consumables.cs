@@ -12,17 +12,13 @@ namespace app.Insatantiables
         }
         public int maxSize { get;set; }
         public int amount { get;set; }
-        public Consumable(ItemTypes type, string name, float weight, float value, int stackSize, Action<IEntity> use) : base(type, name, weight, value)
+        public Consumable(ItemTypes type, string name, float weight, float value, int stackSize, Dictionary<string, int> mods) : base(type, name, weight, value, mods)
         {
             maxSize = stackSize;
             amount = 1;
         }
-        public Consumable():base(ItemTypes.Unset,"",0,0){}
-        public Consumable(params object[] args):base(ItemTypes.Unset,"",0,0){
-
-        }
-        public void Consume()
-        {
+        public Consumable():base(ItemTypes.Unset,"",0,0,new Dictionary<string, int>()){}
+        public Consumable(params object[] args):base(ItemTypes.Unset,"",0,0,new Dictionary<string, int>()){
 
         }
     }

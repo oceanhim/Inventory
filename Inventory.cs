@@ -34,7 +34,7 @@ namespace app
                 _cache.Add(item); Console.WriteLine(item.Name + " Added to your inventory"); 
             }
         }
-        public void List(){ Console.WriteLine(_cache.Count + " items in your inventory"); foreach(IItem item in _cache){Console.WriteLine(item.ToString());} }
+        public void List(){ Console.WriteLine(_cache.Count + " items in your inventory:\n-----------"); foreach(IItem item in _cache){Console.WriteLine(item.ToString());} }
         public T GetItem<T>(string name) where T : IItem
         {
             IItem itemm = _cache.Find((item) => item.Name == name)!;

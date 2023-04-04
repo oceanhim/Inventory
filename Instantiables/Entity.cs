@@ -1,4 +1,5 @@
 using app.Models;
+using app.Utils;
 
 namespace app.Insatantiables
 {
@@ -8,7 +9,7 @@ namespace app.Insatantiables
         {
             if (inventory.Contains(item))
             {
-                // Use this item
+                item.Use<Consumable>(this);
                 inventory.Remove(item.Name);
             }
             else

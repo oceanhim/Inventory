@@ -20,6 +20,7 @@ namespace app.Models
         string ToString();
         float Value { get;set; }
         ItemTypes Type { get; }
+        Dictionary<string, int> Modifiers { get; }
     }
 
     public interface IArmor : IItem
@@ -32,23 +33,25 @@ namespace app.Models
         public string Name { get; set; } = "";
         public int Id { get; set; }
         public float Weight { get; set; }
-        public ItemTypes Type { get;private set; }
+        public ItemTypes Type { get;set; }
         public float Value { get;set; }
+        public Dictionary<string, int> Modifiers { get;set; }
 
         public override string ToString()
         {
             return $"{Name} is a {Type} which weighs {Weight} lbs and is worth ${Value}. It's Id is: {Id}";
         }
 
-        public Item(){}
-        public Item(ItemTypes type, string name, float weight, float value)
+        public Item(){ Modifiers = new Dictionary<string, int>(); }
+        public Item(ItemTypes type, string name, float weight, float value, Dictionary<string, int> mods)
         {
             Random rnd = new Random();
-            this.Type = type;
+            Type = type;
             Name = name;
             Weight = weight;
             Value = value;
             Id = rnd.Next(10000,100000);
+            Modifiers = mods;
         }
     }
 }
