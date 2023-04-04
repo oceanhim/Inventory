@@ -12,14 +12,16 @@ namespace app.Insatantiables
         }
         public int maxSize { get;set; }
         public int amount { get;set; }
-        public Consumable(ItemTypes type, string name, float weight, float value, int stackSize, Dictionary<string, int> mods) : base(type, name, weight, value, mods)
+        public Dictionary<Modifiers, int> Mods { get;set; }
+        public Consumable(ItemTypes type, string name, float weight, float value, int stackSize, Dictionary<Modifiers, int> mods) : base(type, name, weight, value)
         {
             maxSize = stackSize;
             amount = 1;
+            Mods = mods;
         }
-        public Consumable():base(ItemTypes.Unset,"",0,0,new Dictionary<string, int>()){}
-        public Consumable(params object[] args):base(ItemTypes.Unset,"",0,0,new Dictionary<string, int>()){
-
+        public Consumable():base(ItemTypes.Unset,"",0,0){Mods = new Dictionary<Modifiers, int>();}
+        public Consumable(params object[] args):base(ItemTypes.Unset,"",0,0){
+            Mods = new Dictionary<Modifiers, int>();
         }
     }
 }

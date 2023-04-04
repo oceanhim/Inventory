@@ -7,9 +7,18 @@ namespace app.DB
     {
         private static Dictionary<string, IItem> _items = new Dictionary<string, IItem>()
         {
-            {"Apple",new Consumable(ItemTypes.Consumable,"Apple",10.0f,10.0f,10,new Dictionary<string, int>(){{"Health",10}})},
-            {"Potion of Healing",new Consumable(ItemTypes.Consumable,"Potion of Healing",2.0f,50.0f,10,new Dictionary<string, int>(){{"Health",50}}) },
-            {"Wooden Sword", new Weapon(ItemTypes.Weapon,"Wooden Sword",5.0f,10.0f,50.0f,5.0f,new Dictionary<string, int>(){{"Health",10}})}
+            // ----------------- ( CONSUMABLES ) -----------------
+
+                { "Bread", new Consumable(ItemTypes.Consumable,"Bread",3.0f,7.0f,30,new Dictionary<Modifiers, int>(){{ Modifiers.Health,10 }}) },
+
+                { "Apple", new Consumable(ItemTypes.Consumable,"Apple",2.0f,5.0f,30,new Dictionary<Modifiers, int>(){{ Modifiers.Health,15 }}) },
+            
+                { "Potion of Healing",new Consumable(ItemTypes.Consumable,"Potion of Healing",2.0f,50.0f,10,new Dictionary<Modifiers, int>(){{ Modifiers.Health,50 }}) },
+            
+            // ----------------- ( WEAPONS ) -----------------
+    
+                { "Wooden Sword", new Weapon(ItemTypes.Weapon,"Wooden Sword",10.0f,5.0f,50.0f,5.0f) }
+        
         };
         public static T GetItem<T>(string name) where T : IItem
         {

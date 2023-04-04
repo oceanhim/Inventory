@@ -10,13 +10,21 @@ namespace app.Utils
             return ret;
         }
 
-        public static void Use<T>(this T item, IEntity target) where T : IItem
+        public static void Use<T>(this T item, IEntity target) where T : IItem, IConsumable
         {
-            Console.WriteLine(item.Name + " has been used on " + target.Name);
-            
-            foreach(KeyValuePair<string, int> mod in item.Modifiers)
+            foreach(KeyValuePair<Modifiers, int> mod in item.Mods)
             {
-                
+                switch (mod.Key) 
+                {
+                    case Modifiers.Health:
+                        target.Health += mod.Value;
+                        Console.WriteLine($"{item.Name} changed {target.Name}'s {mod.Key} to {target.Health}");
+                        break;
+                    case Modifiers.MaxHealth:
+                        target.MaxHealth += mod.Value;
+                        Console.WriteLine($"{item.Name} changed {target.Name}'s {mod.Key} to {target.MaxHealth}");
+                        break;
+                }
             }
         }
     }
